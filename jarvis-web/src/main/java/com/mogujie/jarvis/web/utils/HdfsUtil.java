@@ -94,6 +94,7 @@ public class HdfsUtil {
         //设置Hadoop用户
         System.setProperty("HADOOP_USER_NAME", PropUtils.getProp("config.properties", "hdfs.super.account", false));
         conf.addResource(HdfsUtil.class.getResourceAsStream("/hdfs-site.xml"));
+        conf.addResource(HdfsUtil.class.getResourceAsStream("/hdfs-core.xml"));
 //        conf.set("fs.hdfs.impl", org.apache.hadoop.hdfs.DistributedFileSystem.class.getName());
 //        conf.set("fs.file.impl", org.apache.hadoop.fs.LocalFileSystem.class.getName());
         fs = FileSystem.get(conf);

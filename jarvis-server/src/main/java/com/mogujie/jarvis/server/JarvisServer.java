@@ -79,11 +79,11 @@ public class JarvisServer {
             ActorSystem system = Injectors.getInjector().getInstance(ActorSystem.class);
 
             Configuration config = ConfigUtils.getServerConfig();
-            int serverActorNum = config.getInt(ServerConigKeys.SERVER_ACTOR_NUM, 500);
+            int serverActorNum = config.getInt(ServerConfigKeys.SERVER_ACTOR_NUM, 500);
             system.actorOf(ServerActor.props().withRouter(new RoundRobinPool(serverActorNum)), JarvisConstants.SERVER_AKKA_SYSTEM_NAME);
 
             LOGGER.info("start dispatcher...");
-            int taskDispatcherThreads = config.getInt(ServerConigKeys.SERVER_DISPATCHER_THREADS, 5);
+            int taskDispatcherThreads = config.getInt(ServerConfigKeys.SERVER_DISPATCHER_THREADS, 5);
             ExecutorService executorService = Executors.newFixedThreadPool(taskDispatcherThreads);
             for (int i = 0; i < taskDispatcherThreads; i++) {
                 Thread taskDispatcher = new TaskDispatcher();
@@ -262,7 +262,7 @@ public class JarvisServer {
 
     private static void initTimerTask() throws Exception {
         Configuration config = ConfigUtils.getServerConfig();
-        List<AbstractTimerTask> timerTasks = ReflectionUtils.getInstancesByConf(config, ServerConigKeys.SERVER_TIMER_TASKS);
+        List<AbstractTimerTask> timerTasks = ReflectionUtils.getInstancesByConf(config, ServerConfigKeys.SERVER_TIMER_TASKS);
         ScheduledExecutorService ses = Executors.newScheduledThreadPool(timerTasks.size());
         DateTime now = DateTime.now();
         for (AbstractTimerTask timerTask : timerTasks) {

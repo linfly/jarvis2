@@ -16,7 +16,7 @@ import com.mogujie.jarvis.dto.generate.Job;
 import com.mogujie.jarvis.protocol.JobProtos.RestModifyJobDependRequest;
 import com.mogujie.jarvis.protocol.JobProtos.RestModifyJobRequest;
 import com.mogujie.jarvis.protocol.JobProtos.RestModifyJobScheduleExpRequest;
-import com.mogujie.jarvis.server.ServerConigKeys;
+import com.mogujie.jarvis.server.ServerConfigKeys;
 import com.mogujie.jarvis.server.guice.Injectors;
 import com.mogujie.jarvis.server.scheduler.JobSchedulerController;
 import com.mogujie.jarvis.server.scheduler.event.ModifyKpiEvent;
@@ -29,7 +29,7 @@ import com.mogujie.jarvis.server.service.JobService;
 public class KpiJobModifyHook implements JobPostHook {
     private JobSchedulerController controller = JobSchedulerController.getInstance();
     private JobService jobService = Injectors.getInjector().getInstance(JobService.class);
-    private final static int BIZ_KPI_ID = ConfigUtils.getServerConfig().getInt(ServerConigKeys.BIZ_KPI_ID);
+    private final static int BIZ_KPI_ID = ConfigUtils.getServerConfig().getInt(ServerConfigKeys.BIZ_KPI_ID);
 
     public void execute(Object obj) {
         if (obj instanceof RestModifyJobRequest) {

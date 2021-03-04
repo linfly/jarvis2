@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.mogujie.jarvis.server.ServerConfigKeys;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
@@ -33,7 +34,6 @@ import com.mogujie.jarvis.core.util.IdUtils;
 import com.mogujie.jarvis.core.util.JsonHelper;
 import com.mogujie.jarvis.dto.generate.Job;
 import com.mogujie.jarvis.dto.generate.Task;
-import com.mogujie.jarvis.server.ServerConigKeys;
 import com.mogujie.jarvis.server.dispatcher.PriorityTaskQueue;
 import com.mogujie.jarvis.server.dispatcher.TaskManager;
 import com.mogujie.jarvis.server.domain.RetryType;
@@ -65,7 +65,7 @@ import com.mogujie.jarvis.server.service.TaskService;
  */
 public class TaskScheduler extends Scheduler {
     private static TaskScheduler instance = new TaskScheduler();
-    private final static int BIZ_KPI_ID = ConfigUtils.getServerConfig().getInt(ServerConigKeys.BIZ_KPI_ID);
+    private final static int BIZ_KPI_ID = ConfigUtils.getServerConfig().getInt(ServerConfigKeys.BIZ_KPI_ID);
 
     private TaskScheduler() {
     }

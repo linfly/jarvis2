@@ -32,6 +32,8 @@ find ./jarvis-worker/target -name *.jar -exec cp {} ${JARVIS_TARGET_LIB_DIR}/wor
 find ./jarvis-tasks/target -name *.jar -exec cp {} ${JARVIS_TARGET_LIB_DIR}/worker \;
 mkdir -p ${JARVIS_TARGET_DIR}/bin
 cp ${JARVIS_PREFIX}/bin/jarvis-* ${JARVIS_TARGET_DIR}/bin/
+cp ${JARVIS_PREFIX}/bin/start-* ${JARVIS_TARGET_DIR}/bin/
+cp ${JARVIS_PREFIX}/bin/stop-* ${JARVIS_TARGET_DIR}/bin/
 cp -r ${JARVIS_PREFIX}/conf ${JARVIS_TARGET_DIR}/conf
 mkdir -p ${JARVIS_TARGET_DIR}/logs
 cd ${JARVIS_DIST_DIR} && tar zcf ${version}.tar.gz ${version} && rm -rf ${version}

@@ -35,7 +35,7 @@ import com.mogujie.jarvis.core.util.ExceptionUtil;
 import com.mogujie.jarvis.dto.generate.App;
 import com.mogujie.jarvis.protocol.AppAuthProtos.AppAuth;
 import com.mogujie.jarvis.protocol.HeartBeatProtos.HeartBeatRequest;
-import com.mogujie.jarvis.server.ServerConigKeys;
+import com.mogujie.jarvis.server.ServerConfigKeys;
 import com.mogujie.jarvis.server.domain.ActorEntry;
 import com.mogujie.jarvis.server.guice.Injectors;
 import com.mogujie.jarvis.server.service.AppService;
@@ -45,7 +45,7 @@ public class ServerActor extends UntypedActor {
     private AppService appService = Injectors.getInjector().getInstance(AppService.class);
 
     private static Configuration serverConfig = ConfigUtils.getServerConfig();
-    private static boolean appTokenVerifyEnable = serverConfig.getBoolean(ServerConigKeys.APP_TOKEN_VERIFY_ENABLE, true);
+    private static boolean appTokenVerifyEnable = serverConfig.getBoolean(ServerConfigKeys.APP_TOKEN_VERIFY_ENABLE, true);
     private static Map<Class<?>, Pair<ActorRef, ActorEntry>> map = Maps.newConcurrentMap();
     private static List<Pair<ActorRef, List<ActorEntry>>> actorRefs = Lists.newArrayList();
 
@@ -60,11 +60,11 @@ public class ServerActor extends UntypedActor {
     }
 
     private void addActors() {
-        int taskMetricsRoutingActorNum = serverConfig.getInt(ServerConigKeys.TASK_METRICS_ACTOR_NUM, 50);
+        int taskMetricsRoutingActorNum = serverConfig.getInt(ServerConfigKeys.TASK_METRICS_ACTOR_NUM, 50);
         actorRefs.add(new Pair<ActorRef, List<ActorEntry>>(getContext().actorOf(TaskMetricsRoutingActor.props(taskMetricsRoutingActorNum)),
                 TaskMetricsRoutingActor.handledMessages()));
 
-        int taskActorNum = serverConfig.getInt(ServerConigKeys.TASK_ACTOR_NUM, 20);
+        int taskActorNum = serverConfig.getInt(ServerConfigKeys.TASK_ACTOR_NUM, 20);
         addActor(getContext().actorOf(TaskActor.props().withRouter(new RoundRobinPool(taskActorNum))), TaskActor.handledMessages());
         addActor(getContext().actorOf(AppActor.props().withRouter(new RoundRobinPool(20))), AppActor.handledMessages());
         addActor(getContext().actorOf(JobActor.props().withRouter(new RoundRobinPool(20))), JobActor.handledMessages());

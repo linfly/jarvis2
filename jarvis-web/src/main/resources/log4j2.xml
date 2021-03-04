@@ -34,7 +34,7 @@
             <AppenderRef ref="exceptionLogFile" level="info" />
             <AppenderRef ref="exceptionLogRollingFile" level="info" />
         </Logger>
-        <Logger name="jarvisLogger" additivity="TRUE" level="info">
+        <Logger name="com.mogujie" additivity="TRUE" level="info">
             <AppenderRef ref="jarvisLogRollingFile" level="info" />
         </Logger>
     </Loggers>

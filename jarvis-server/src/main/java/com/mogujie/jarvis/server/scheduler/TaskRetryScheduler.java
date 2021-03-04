@@ -14,6 +14,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.mogujie.jarvis.server.ServerConfigKeys;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
@@ -30,7 +31,6 @@ import com.mogujie.jarvis.core.observer.Event;
 import com.mogujie.jarvis.core.util.ConfigUtils;
 import com.mogujie.jarvis.core.util.IdUtils;
 import com.mogujie.jarvis.core.util.ThreadUtils;
-import com.mogujie.jarvis.server.ServerConigKeys;
 import com.mogujie.jarvis.server.dispatcher.PriorityTaskQueue;
 import com.mogujie.jarvis.server.dispatcher.TaskManager;
 import com.mogujie.jarvis.server.domain.RetryType;
@@ -53,8 +53,8 @@ public enum TaskRetryScheduler {
     private PriorityTaskQueue taskQueue = Injectors.getInjector().getInstance(PriorityTaskQueue.class);
     private Map<Pair<String, RetryType>, TaskDetail> taskMap = Maps.newConcurrentMap();
     private AtomicLongMap<String> taskFailedRetryCounter = AtomicLongMap.create();
-    private int rejectRetryInterval = ConfigUtils.getServerConfig().getInt(ServerConigKeys.TASK_REJECT_INTERVAL, 10);
-    private int autoRetryInterval = ConfigUtils.getServerConfig().getInt(ServerConigKeys.TASK_AUTO_INTERVAL, 5);
+    private int rejectRetryInterval = ConfigUtils.getServerConfig().getInt(ServerConfigKeys.TASK_REJECT_INTERVAL, 10);
+    private int autoRetryInterval = ConfigUtils.getServerConfig().getInt(ServerConfigKeys.TASK_AUTO_INTERVAL, 5);
     private BlockingQueue<Tuple3<String, RetryType, DateTime>> tasks = Queues.newLinkedBlockingQueue(100);
     private JobSchedulerController schedulerController = JobSchedulerController.getInstance();
     private static final Logger LOGGER = LogManager.getLogger();

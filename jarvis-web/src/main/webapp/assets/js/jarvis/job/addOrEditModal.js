@@ -165,7 +165,7 @@ function confirmPara() {
     $("#parasTable tbody tr").each(function (i, c) {
         key = $(c).find("input[name=key]").first().val().trim();
         val = $(c).find("input[name=value]").first().val().trim();
-        if (key == null || key == '') {
+        if (key == null) {
             return;
         }
         paras[key] = val;
@@ -220,7 +220,7 @@ function confirmSparkLauncherParas() {
     $("#sparkLauncherParasModalBody input, #sparkLauncherParasModalBody textarea").each(function (i, c) {
         key = $(this).attr("name");
         val = $(this).val().trim();
-        if (val == null || val == "") {
+        if (val == null) {
             return;
         }
         paras[key] = val;
@@ -325,7 +325,7 @@ function confirmJavaParas() {
     $("#javaParasModalBody input, #javaParasModalBody textarea").each(function (i, c) {
         key = $(this).attr("name");
         val = $(this).val().trim();
-        if (val == null || val == "") {
+        if (val == null) {
             return;
         }
         paras[key] = val;

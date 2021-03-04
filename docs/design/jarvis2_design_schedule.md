@@ -18,7 +18,7 @@
 #### 触发时间：
 * 任务结束调度：意味所有依赖任务都触发了，即满足调度的依赖条件。
 * 计算公式：依赖任务触发时间的最大值。（时间触发时，指时间触发时刻）
-![schedule_time](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/schedule_time.png)
+![schedule_time](img/schedule_time.png)
 
 
 ## 调度依赖
@@ -43,7 +43,7 @@
   * 起始偏移时间 x(n)："基准时间"向前偏移x(n)时间，作为偏移时间的起始点。（正数向前，负数向后）
   * 结束偏移时间 x(m)：偏移开始时间 向前偏移x(m)时间，作为偏移时间的结束点。（正数向前，负数向后） 
   * 时间单位：年y、月M、周w、天d、时h、分m、秒s
-![schedule_time](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/dependency_scope.png)
+![schedule_time](img/dependency_scope.png)
 
 * 简化版配置
   * **cd**      当天。 对应表达式 （yyyy-MM-dd 00:00:00, d(-1), d(1) ]

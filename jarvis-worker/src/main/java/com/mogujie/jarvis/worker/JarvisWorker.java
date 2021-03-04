@@ -54,8 +54,12 @@ public class JarvisWorker {
             while (!register) {
                 WorkerRegistryRequest request = WorkerRegistryRequest.newBuilder().setKey(workerKey).build();
                 ActorSelection serverActor = system.actorSelection(serverAkkaPath);
+                LOGGER.info("serverActor=="+serverActor);
+                LOGGER.info("serverAkkaPath=="+serverAkkaPath);
+                LOGGER.info("workerKey=="+workerKey);
+                LOGGER.info("request=="+request);
                 try {
-                    ServerRegistryResponse response = (ServerRegistryResponse) FutureUtils.awaitResult(serverActor, request, 5);
+                    ServerRegistryResponse response = (ServerRegistryResponse) FutureUtils.awaitResult(serverActor, request, 10);
                     if (!response.getSuccess()) {
                         LOGGER.error("Worker register failed with group.id={}, worker.key={}, exit", workerGroupId, workerKey);
                         system.terminate();

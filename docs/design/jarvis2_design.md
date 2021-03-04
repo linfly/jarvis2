@@ -42,13 +42,13 @@
 
 ### 2.2 系统设计
 
-![系统设计](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/jarvis_design.png)
+![系统设计](img/jarvis_design.png)
 
 
 
 #### 2.2.1 系统组成
 
-![系统设计](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/server_topology.png)
+![系统设计](img/server_topology.png)
 
 - Server
 
@@ -116,7 +116,7 @@
 调度器（Scheduler）和分发器（Dispatcher）之间是生产者和消费者的关系，Scheduler提交task给Dispatcher。只要Dispatcher空闲，就会拿走进行分发。
 
 
-![调度器设计](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/scheduler_design.png)
+![调度器设计](img/scheduler_design.png)
 
 如上图所示：  
 
@@ -133,7 +133,7 @@ Dispatcher通过push的方式，由任务分发器按照可扩展的分发策略
 
 Dispatcher由ExecuteQueue,TaskDispatcher,RetryScheduler 3个子模块组成。
 
-![分发器设计](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/dispatcher_design.png)
+![分发器设计](img/dispatcher_design.png)
 
 - ExecuteQueue维护已经进入ready状态的task，由Scheduler提交，由TaskDispatcher进行消费。在该设计中，支持按照优先级先后顺序进行分发任务，所以内部实现是一个优先级队列。每次会把优先级最高的任务拿出给TaskDispatcher进行消费。
 
@@ -169,13 +169,13 @@ Hive任务：YarnStrategy
 
 #### 2.4.1 任务执行流程
 
-![任务执行流程](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/job_execution_flow.png)
+![任务执行流程](img/job_execution_flow.png)
 
 
 
 #### 2.4.2 任务终止流程
 
-![任务终止流程](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/kill_job.png)
+![任务终止流程](img/kill_job.png)
 
 
 
@@ -183,7 +183,7 @@ Hive任务：YarnStrategy
 
 调度系统的server不提供任务重跑的逻辑，由外部系统自己计算需要重跑的任务，然后传给调度系统。
 
-![任务重跑流程](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/job_rerun.png)  
+![任务重跑流程](img/job_rerun.png)  
 
 如上图所示是外部系统重跑的逻辑
 
@@ -193,7 +193,7 @@ Hive任务：YarnStrategy
 
 #### 2.4.4 调度计划修改流程
 
-![调度计划修改流程](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/plan_modify.png)  
+![调度计划修改流程](img/plan_modify.png)  
 
 如上图，当修改任务的内容的时候，只需要修改数据库中的内容，不会影响调度逻辑。调度系统不会在内存中维护任务的执行内容，每次会去数据库中动态拿。
 
@@ -205,7 +205,7 @@ Hive任务：YarnStrategy
 
 #### 2.4.5 Executor交互流程
 
-![Executor交互流程](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/job_executor.png)
+![Executor交互流程](img/job_executor.png)
 
 Job是一个抽象类，包括preExecute()、execute()、postExecute()3个抽象方法，根据各自需求实现这些方法以此来支持不同类型的任务，其中JobContext包含了任务运行参数，如：ID、名称、类型以及其它扩展参数等。
 Server将任务提交至Worker，然后Worker分别先后执行preExecute()、execute()、postExecute()方法，并且Worker在执行前后会向Server汇报任务状态，任务运行过程中生成的日志由LogCollector发送给LogServer，最终由LogServer保存至存储系统中(可以是HDFS、HBase等)。

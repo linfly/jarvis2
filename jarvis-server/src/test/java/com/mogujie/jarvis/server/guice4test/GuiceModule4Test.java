@@ -15,7 +15,7 @@ import com.google.inject.Provides;
 import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
-import com.mogujie.jarvis.server.ServerConigKeys;
+import com.mogujie.jarvis.server.ServerConfigKeys;
 import com.mogujie.jarvis.server.dispatcher.TaskManager;
 import com.mogujie.jarvis.server.dispatcher.workerselector.RandomWorkerSelector;
 import com.mogujie.jarvis.server.dispatcher.workerselector.RoundRobinWorkerSelector;
@@ -32,7 +32,7 @@ public class GuiceModule4Test extends AbstractModule {
     @Provides
     @Singleton
     private WorkerSelector provideWorkerSelector() {
-        String workerSelectorName = properties.getProperty(ServerConigKeys.WORKER_SELECTOR, "RoundRobinWorkerSelector");
+        String workerSelectorName = properties.getProperty(ServerConfigKeys.WORKER_SELECTOR, "RoundRobinWorkerSelector");
         if (workerSelectorName.equals("RoundRobinWorkerSelector")) {
             return new RoundRobinWorkerSelector();
         }

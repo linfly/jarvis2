@@ -28,7 +28,7 @@ import com.mogujie.jarvis.core.util.IdUtils;
 import com.mogujie.jarvis.dto.generate.App;
 import com.mogujie.jarvis.dto.generate.Task;
 import com.mogujie.jarvis.dto.generate.Worker;
-import com.mogujie.jarvis.server.ServerConigKeys;
+import com.mogujie.jarvis.server.ServerConfigKeys;
 import com.mogujie.jarvis.server.guice.Injectors;
 import com.mogujie.jarvis.server.service.AppService;
 import com.mogujie.jarvis.server.service.TaskService;
@@ -72,7 +72,7 @@ public class TaskManager {
     }
 
     public synchronized boolean addTask(String fullId, WorkerInfo workerInfo, int appId) {
-        boolean parallelismLimitEnable = serverConfig.getBoolean(ServerConigKeys.APP_MAX_PARALLELISM_LIMIT_ENABLE, false);
+        boolean parallelismLimitEnable = serverConfig.getBoolean(ServerConfigKeys.APP_MAX_PARALLELISM_LIMIT_ENABLE, false);
         if (parallelismLimitEnable && parallelismCounter.get(appId) >= maxParallelismMap.get(appId)) {
             return false;
         }

@@ -28,6 +28,9 @@
     <Root level="info">
       <AppenderRef ref="RollingFile"/>
     </Root>
+      <Logger name="org.apache.commons" level="info" additivity="false">
+          <AppenderRef ref="RollingFile"/>
+      </Logger>
     <Logger name="heartbeat" level="info" additivity="false">
 	  <AppenderRef ref="heartbeat" />
     </Logger>

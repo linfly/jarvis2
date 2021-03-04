@@ -8,6 +8,7 @@
 
 package com.mogujie.jarvis.server.guice;
 
+import com.mogujie.jarvis.server.ServerConfigKeys;
 import com.mogujie.jarvis.server.interceptor.OperationLogInterceptor;
 import com.mogujie.jarvis.server.interceptor.OperationLog;
 import java.util.Properties;
@@ -19,7 +20,6 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import com.mogujie.jarvis.core.JarvisConstants;
 import com.mogujie.jarvis.core.util.ConfigUtils;
-import com.mogujie.jarvis.server.ServerConigKeys;
 import com.mogujie.jarvis.server.dispatcher.TaskManager;
 import com.mogujie.jarvis.server.dispatcher.workerselector.RandomWorkerSelector;
 import com.mogujie.jarvis.server.dispatcher.workerselector.RoundRobinWorkerSelector;
@@ -42,7 +42,7 @@ public class GuiceModule extends AbstractModule {
     @Provides
     @Singleton
     private WorkerSelector provideWorkerSelector() {
-        String workerSelectorName = properties.getProperty(ServerConigKeys.WORKER_SELECTOR, "RoundRobinWorkerSelector");
+        String workerSelectorName = properties.getProperty(ServerConfigKeys.WORKER_SELECTOR, "RoundRobinWorkerSelector");
         if (workerSelectorName.equals("RoundRobinWorkerSelector")) {
             return new RoundRobinWorkerSelector();
         }

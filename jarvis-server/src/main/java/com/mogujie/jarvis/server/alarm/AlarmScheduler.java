@@ -9,6 +9,7 @@ package com.mogujie.jarvis.server.alarm;
 
 import java.util.List;
 
+import com.mogujie.jarvis.server.ServerConfigKeys;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,7 +20,6 @@ import com.mogujie.jarvis.core.domain.AlarmType;
 import com.mogujie.jarvis.core.util.ConfigUtils;
 import com.mogujie.jarvis.dto.generate.Alarm;
 import com.mogujie.jarvis.dto.generate.Job;
-import com.mogujie.jarvis.server.ServerConigKeys;
 import com.mogujie.jarvis.server.guice.Injectors;
 import com.mogujie.jarvis.server.scheduler.Scheduler;
 import com.mogujie.jarvis.server.scheduler.event.FailedEvent;
@@ -39,11 +39,11 @@ public class AlarmScheduler extends Scheduler {
     private AlarmService alarmService = Injectors.getInjector().getInstance(AlarmService.class);
 
     private static Alarmer alarmer = null;
-    private boolean alarmEnable = ConfigUtils.getServerConfig().getBoolean(ServerConigKeys.ALARM_ENABLE, false);
+    private boolean alarmEnable = ConfigUtils.getServerConfig().getBoolean(ServerConfigKeys.ALARM_ENABLE, false);
     private static final Logger LOGGER = LogManager.getLogger();
 
     static {
-        String alarmerClass = ConfigUtils.getServerConfig().getString(ServerConigKeys.ALARMER_CLASS);
+        String alarmerClass = ConfigUtils.getServerConfig().getString(ServerConfigKeys.ALARMER_CLASS);
         try {
             alarmer = (Alarmer) Class.forName(alarmerClass).newInstance();
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
@@ -53,16 +53,17 @@ public class AlarmScheduler extends Scheduler {
 
     @Override
     public void handleStartEvent(StartEvent event) {
-
+        LOGGER.info("alerm started");
     }
 
     @Override
     public void handleStopEvent(StopEvent event) {
-
+        LOGGER.info("alerm stoped");
     }
 
     @Subscribe
     public void handleFailedEvent(FailedEvent event) {
+        LOGGER.info("alerm failed");
         if (alarmEnable) {
             long jobId = event.getJobId();
             Job job = jobService.get(jobId).getJob();
@@ -76,6 +77,7 @@ public class AlarmScheduler extends Scheduler {
 
     @Subscribe
     public void handleKilledEvent(KilledEvent event) {
+        LOGGER.info("alerm killed");
         if (alarmEnable) {
             long jobId = event.getJobId();
             Job job = jobService.get(jobId).getJob();
@@ -89,6 +91,7 @@ public class AlarmScheduler extends Scheduler {
 
     @Subscribe
     public void handleModifyKpiEvent(ModifyKpiEvent event) {
+        LOGGER.info("alerm modifyKpi");
         alarm(event.getJobId(), event.getMsg());
     }
 

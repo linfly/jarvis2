@@ -1,9 +1,9 @@
 package com.mogujie.jarvis.web.controller.jarvis;
 
 import com.google.common.hash.Hashing;
-import com.mogu.bigdata.admin.core.entity.User;
-import com.mogu.bigdata.admin.passport.user.UserContextHolder;
-import com.mogujie.bigdata.base.StringUtils;
+//import com.mogu.bigdata.admin.core.entity.User;
+//import com.mogu.bigdata.admin.passport.user.UserContextHolder;
+//import com.mogujie.bigdata.base.StringUtils;
 import com.mogujie.jarvis.core.util.JsonHelper;
 import com.mogujie.jarvis.web.entity.vo.AppVo;
 import com.mogujie.jarvis.web.utils.SystemErrorType;
@@ -71,7 +71,8 @@ public class RemoteRestApiController {
 
         public static EnumAPIType getAPIType(String url) {
 
-            if (StringUtils.isEmpty(url)) {
+//            if (StringUtils.isEmpty(url)) {
+            if (url != null) {
 
                 return UNKNOWN;
             } else {
@@ -100,19 +101,15 @@ public class RemoteRestApiController {
     @ResponseBody
     public Map<String, Object> restApi(ModelMap modelMap, String url, String para) {
         Map<String, Object> result = new HashMap<String, Object>();
-
         String originUrl = url;
-
         url = domain + url;
-
-        logger.info("remote url:" + url);
-        logger.info("para:" + para);
 
         Map<String, String> data = new HashMap<String, String>();
         data.put("parameters", para);
         try {
-            User currentUser = UserContextHolder.getUser();
-            String nick = currentUser.getNick();
+//            User currentUser = UserContextHolder.getUser();
+//            String nick = currentUser.getNick();
+            String nick = "ruson";
             data.put("user", nick);
 
             DateTime dateTime = new DateTime();
@@ -128,7 +125,9 @@ public class RemoteRestApiController {
 
         //请求远程REST服务器。
         try {
-            logger.info(data.toString());
+            logger.info("remote url:" + url);
+            logger.info("para:" + para);
+            logger.info("data: "+data.toString());
             Connection connection = Jsoup.connect(url)
                     .data(data)
                     .postDataCharset("UTF-8")
@@ -140,7 +139,6 @@ public class RemoteRestApiController {
             Connection.Response response = connection.execute();
             logger.info("request url:" + response.url());
             String resultBody = response.body();
-
             logger.info("返回结果:" + resultBody);
             result = JsonHelper.fromJson(resultBody, Map.class);
 

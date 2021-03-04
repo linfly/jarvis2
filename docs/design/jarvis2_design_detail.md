@@ -7,7 +7,7 @@
 
 DAGScheduler类图如下：
 
-![uml_DAGScheduler](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/uml_DAGScheduler.png)
+![uml_DAGScheduler](img/uml_DAGScheduler.png)
 
 DAGScheduler中的DAGMap，其数据结构为Map[Integer, DAGJob]  
 DAGScheduler中的runningMap，其数据结构为Map[Integer, DAGTask]  
@@ -18,7 +18,7 @@ JobDependStatus中的jobStatusMap，其数据结构为Map[Integer,Map[Integer,Bo
 
 时间调度器负责调度基于时间触发的任务，支持Cron表达式时间配置。
 
-![时间调度器](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/time_based_scheduler_new.png)
+![时间调度器](img/time_based_scheduler_new.png)
 
 时间调度器从数据库中加载周期性调度任务，或者从Rest API请求增加/修改/删除任务。根据任务配置的调度时间(CronExpression)，调度器定时计算出每个任务后面一段时间内（如：一天）的具体调度时间，并生成调度计划(Schedule Plan)。
 
@@ -35,13 +35,13 @@ DAGScheduler通过观察者模式进行事件处理，目的是把同步调用�
 
 ##### 1.1.2.1 Event设计
 
-![uml_event](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/uml_mvc_event.png)
+![uml_event](img/uml_mvc_event.png)
 
 如图所示，Event是一个接口，DAGEvent是一个抽象类，其子类有InitializeEvent,SuccessEvent,ScheduledEvent等。DAGEvent中主要有两个成员，jobid和taskid。
 
 ##### 1.1.2.2 Observable和Observer设计
 
-![uml_observable](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/uml_mvc_observable.png)
+![uml_observable](img/uml_mvc_observable.png)
 
 如图所示，Observable是一个接口，相当于观察者模式中的主题，Listener是一个接口是观察者模式中的观察者。
 
@@ -78,7 +78,7 @@ DAGJob中有一个成员JobDependStatus，用来维护当前任务的依赖的�
 
 ### 1.3 JobDispatcher模块设计
 
-![Job Dispatcher](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/uml_job_dispatcher.png)
+![Job Dispatcher](img/uml_job_dispatcher.png)
 
 Job Dispatcher负责从Worker组中分配一个Worker，然后将任务发给此Worker执行。
 
@@ -94,7 +94,7 @@ RandomJobDispatcher：随机生成一个Worker数以内的整数作为Worker索�
 
 调度系统有四个service，master,worker,logserver和restfulserver. 其中master,worker,logserver通过rpc协议通信，使用akka框架，其akka架构图如下：
 
-![akka_service](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/akka_service.png)
+![akka_service](img/akka_service.png)
 
 如上图所示，sentinel master内部有ServerActor，DAGSchedulerActor, HeartBeatActor，和JobMetricsRoutingActor。HeartBeatActor用来接收slave发送过来的心跳信息，由HeartBeatManager来维护所有client的信息。ServerActor作为master对外的唯一actor，只负责转发消息。DAGSchedulerActor是调度器的actor，接收ServerActor和JobMetricsActor发送过来的消息进行任务调度，并提交任务给ExecuteQueue模块。
 
@@ -106,7 +106,7 @@ ClientActor负责接收任务，并从线程池中取线程进行任务的执行
 
 ### 1.5 Job模块设计
 
-![Job](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/uml_job.png)
+![Job](img/uml_job.png)
 
 Job为任务的抽象类，主要包括4个接口：preExecute()、execute()、postExecute()、kill()，作用分别为：
 
@@ -139,7 +139,7 @@ hive cli运行在worker本地，hive的执行结果作为shell的标准输出会
 
 ### 2.2 Kill任务
 
-![Kill Job](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/uml_kill_job.png)
+![Kill Job](img/uml_kill_job.png)
 
 RestServer收到Kill请求转发给Server，然后Server将Kill请求发送到执行对应任务的Worker，由Worker调用job的kill()方法终止任务，完成后向Server返回响应。
 
@@ -240,7 +240,7 @@ master/stand by HA切换处理
 超过3分钟联系不上worker，则把该worker上的任务重新发到其他worker执行。
 （先把任务设置为失败，然后重新执行任务）
 
-![worker_miss](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/worker_miss.png)
+![worker_miss](img/worker_miss.png)
 
 #### 2.9.2 worker端的异常处理
 - worker重启
@@ -252,7 +252,7 @@ master/stand by HA切换处理
 
 超过3分钟联系不上server，则把执行中的任务都kill掉。
 
-![worker_miss](http://gitlab.mogujie.org/bigdata/jarvis2/raw/master/docs/design/img/server_miss.png)
+![worker_miss](img/server_miss.png)
 
 ### 2.10 master暂停处理
 

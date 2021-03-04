@@ -115,7 +115,7 @@ function checkEmptyByIds(ids, desc) {
   $(ids).each(function (i, c) {
     var value = $("#" + c).val();
     if (value != null) {
-      value = value.trim();
+      value = $.trim(value);
     }
     if (value == undefined || value == '' || value == null) {
       flag = false;
@@ -130,9 +130,9 @@ function checkEmptyByIds(ids, desc) {
 function getDepartDataFromPage() {
   var result = {};
   var inputs = $(
-      "#departmentInfo .input-group>input,#departmentInfo .input-group>textarea,#bizGroupInfo .input-group>input,#bizGroupInfo .input-group>textarea,#ralationInfo .input-group>input,#ralationInfo .input-group>textarea");
+      "#departmentInfo .input-group>input,#bizGroupInfo .input-group>input");
   var status = $("#status input:checked").val();
-  var selects = $("#ralationInfo .input-group>select");
+  var selects = $("#ralationInfo .input-group>select,#bizGroupInfo .input-group>select,#ralationInfo .input-group>select,#ralationInfo .input-group>select");
   $(inputs).each(function (i, c) {
     var id = $(c).prop("id");
     if (id == null || id == '') {

@@ -89,7 +89,7 @@ import com.mogujie.jarvis.protocol.SearchJobProtos.ServerSearchJobLikeNameRespon
 import com.mogujie.jarvis.protocol.SearchJobProtos.ServerSearchPreJobInfoResponse;
 import com.mogujie.jarvis.protocol.SearchJobProtos.ServerSearchScriptTypeResponse;
 import com.mogujie.jarvis.protocol.SearchJobProtos.SimpleJobInfoEntry;
-import com.mogujie.jarvis.server.ServerConigKeys;
+import com.mogujie.jarvis.server.ServerConfigKeys;
 import com.mogujie.jarvis.server.actor.hook.JobPostHook;
 import com.mogujie.jarvis.server.domain.ActorEntry;
 import com.mogujie.jarvis.server.domain.ModifyDependEntry;
@@ -321,7 +321,7 @@ public class JobActor extends UntypedActor {
             getSender().tell(response, getSelf());
 
             // post hook
-            List<JobPostHook> postHooks = ReflectionUtils.getInstancesByConf(ConfigUtils.getServerConfig(), ServerConigKeys.JOB_ACTOR_POST_HOOKS);
+            List<JobPostHook> postHooks = ReflectionUtils.getInstancesByConf(ConfigUtils.getServerConfig(), ServerConfigKeys.JOB_ACTOR_POST_HOOKS);
             for (JobPostHook hook : postHooks) {
                 hook.execute(msg);
             }
@@ -385,7 +385,7 @@ public class JobActor extends UntypedActor {
             getSender().tell(response, getSelf());
 
             // post hook
-            List<JobPostHook> postHooks = ReflectionUtils.getInstancesByConf(ConfigUtils.getServerConfig(), ServerConigKeys.JOB_ACTOR_POST_HOOKS);
+            List<JobPostHook> postHooks = ReflectionUtils.getInstancesByConf(ConfigUtils.getServerConfig(), ServerConfigKeys.JOB_ACTOR_POST_HOOKS);
             for (JobPostHook hook : postHooks) {
                 hook.execute(msg);
             }
@@ -485,7 +485,7 @@ public class JobActor extends UntypedActor {
             planService.refreshPlan(jobId, range);
 
             // post hook
-            List<JobPostHook> postHooks = ReflectionUtils.getInstancesByConf(ConfigUtils.getServerConfig(), ServerConigKeys.JOB_ACTOR_POST_HOOKS);
+            List<JobPostHook> postHooks = ReflectionUtils.getInstancesByConf(ConfigUtils.getServerConfig(), ServerConfigKeys.JOB_ACTOR_POST_HOOKS);
             for (JobPostHook hook : postHooks) {
                 hook.execute(msg);
             }
