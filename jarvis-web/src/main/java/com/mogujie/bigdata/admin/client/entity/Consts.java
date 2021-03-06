@@ -1,4 +1,4 @@
-package com.mogu.bigdata.admin.client.entity;
+package com.mogujie.bigdata.admin.client.entity;
 
 /**
  * Created by lixun on 2017/7/25.

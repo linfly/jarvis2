@@ -5,11 +5,10 @@
  */
 package com.mogujie.jarvis.web.mock;
 
-import com.mogu.bigdata.admin.client.entity.Consts;
-import com.mogu.bigdata.admin.client.entity.Result;
-import com.mogu.bigdata.admin.client.service.UserService;
-import com.mogu.bigdata.admin.core.entity.User;
-import org.springframework.stereotype.Component;
+import com.mogujie.bigdata.admin.client.entity.Consts;
+import com.mogujie.bigdata.admin.client.entity.Result;
+import com.mogujie.bigdata.admin.client.service.UserService;
+import com.mogujie.bigdata.admin.core.entity.User;
 
 /**
  * @author 鸣人(mingren@mogujie.com)

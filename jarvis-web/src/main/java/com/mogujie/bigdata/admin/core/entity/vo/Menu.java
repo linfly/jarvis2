@@ -1,4 +1,4 @@
-package com.mogu.bigdata.admin.core.entity.vo;
+package com.mogujie.bigdata.admin.core.entity.vo;
 
 /**
  * Created by lixun on 2017/7/25.

@@ -5,9 +5,8 @@
  */
 package com.mogujie.jarvis.web.mock;
 
-import com.mogu.bigdata.admin.client.entity.Result;
-import com.mogu.bigdata.admin.client.service.RbacService;
-import org.springframework.stereotype.Component;
+import com.mogujie.bigdata.admin.client.entity.Result;
+import com.mogujie.bigdata.admin.client.service.RbacService;
 
 import java.util.Collections;
 import java.util.List;

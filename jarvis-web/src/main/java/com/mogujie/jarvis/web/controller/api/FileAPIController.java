@@ -1,7 +1,7 @@
 package com.mogujie.jarvis.web.controller.api;
 
-import com.mogu.bigdata.admin.core.entity.User;
-import com.mogu.bigdata.admin.passport.user.UserContextHolder;
+import com.mogujie.bigdata.admin.core.entity.User;
+import com.mogujie.bigdata.admin.passport.user.UserContextHolder;
 import com.mogujie.jarvis.core.exception.JarvisException;
 import com.mogujie.jarvis.core.util.ExceptionUtil;
 import com.mogujie.jarvis.web.utils.HdfsUtil;

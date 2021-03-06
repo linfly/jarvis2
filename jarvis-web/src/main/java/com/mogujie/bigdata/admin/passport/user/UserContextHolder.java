@@ -1,6 +1,6 @@
-package com.mogu.bigdata.admin.passport.user;
+package com.mogujie.bigdata.admin.passport.user;
 
-import com.mogu.bigdata.admin.core.entity.User;
+import com.mogujie.bigdata.admin.core.entity.User;
 
 /**
  * Created by lixun on 2017/7/25.

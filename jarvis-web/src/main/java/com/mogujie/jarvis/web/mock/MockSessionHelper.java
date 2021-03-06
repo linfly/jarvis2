@@ -5,9 +5,8 @@
  */
 package com.mogujie.jarvis.web.mock;
 
-import com.mogu.bigdata.admin.core.entity.User;
-import com.mogu.bigdata.admin.passport.user.session.SessionHelper;
-import org.springframework.stereotype.Component;
+import com.mogujie.bigdata.admin.core.entity.User;
+import com.mogujie.bigdata.admin.passport.user.session.SessionHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -5,11 +5,9 @@
  */
 package com.mogujie.jarvis.web.mock;
 
-import com.mogu.bigdata.admin.client.entity.Result;
-import com.mogu.bigdata.admin.core.entity.User;
-import com.mogu.bigdata.admin.passport.exception.PassportException;
-import com.mogu.bigdata.admin.passport.user.UuapService;
-import org.springframework.stereotype.Component;
+import com.mogujie.bigdata.admin.client.entity.Result;
+import com.mogujie.bigdata.admin.core.entity.User;
+import com.mogujie.bigdata.admin.passport.exception.PassportException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

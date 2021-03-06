@@ -1,4 +1,4 @@
-package com.mogu.bigdata.admin.client.entity;
+package com.mogujie.bigdata.admin.client.entity;
 
 import com.mogujie.jarvis.web.mock.MockUuapService;
 

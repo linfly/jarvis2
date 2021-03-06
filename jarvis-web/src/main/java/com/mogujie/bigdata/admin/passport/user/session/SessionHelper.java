@@ -1,7 +1,6 @@
-package com.mogu.bigdata.admin.passport.user.session;
+package com.mogujie.bigdata.admin.passport.user.session;
 
-import com.mogu.bigdata.admin.core.entity.User;
-import com.mogujie.jarvis.web.mock.MockUuapService;
+import com.mogujie.bigdata.admin.core.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

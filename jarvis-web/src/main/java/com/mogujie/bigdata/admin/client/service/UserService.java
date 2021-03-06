@@ -1,7 +1,7 @@
-package com.mogu.bigdata.admin.client.service;
+package com.mogujie.bigdata.admin.client.service;
 
-import com.mogu.bigdata.admin.client.entity.Result;
-import com.mogu.bigdata.admin.core.entity.User;
+import com.mogujie.bigdata.admin.client.entity.Result;
+import com.mogujie.bigdata.admin.core.entity.User;
 
 /**
  * Created by lixun on 2017/7/25.

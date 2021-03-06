@@ -1,11 +1,9 @@
 package com.mogujie.jarvis.web.controller.api;
 
-import com.mogu.bigdata.admin.core.entity.User;
-
+import com.mogujie.bigdata.admin.core.entity.User;
 import com.mogujie.jarvis.web.service.TaskService;
-
 import com.mogujie.jarvis.web.utils.MessageStatus;
-import org.mogujie.ppcenter.sdk.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,8 +33,7 @@ public class CommonAPIController {
     public Object getAllUser() {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            List<Map<String, Object>> allUsers = UserService.getAllUsers();
-            allUsers = new ArrayList<>();
+            List<Map<String, Object>> allUsers = new ArrayList<>();
             Map<String, Object> map1 = new HashMap<String, Object>();
             map1.put("workId", "10001");
             map1.put("domain",  "domain");
