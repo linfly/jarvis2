@@ -308,7 +308,7 @@
                     <force>false</force>
                     <nosuffix>true</nosuffix>
                     <linebreakpos>-1</linebreakpos>
-                    <sourceDirectory>src/main/resources/static</sourceDirectory>
+                    <sourceDirectory>src/main/webapp/assets</sourceDirectory>
                     <includes>
                         <include>js/**/*.js</include>
                         <include>js/*.js</include>
@@ -318,7 +318,7 @@
                         <exclude>**/*.min.js</exclude>
                         <exclude>**/*.min.css</exclude>
                     </excludes>
-                    <outputDirectory>target/classes/static</outputDirectory>
+                    <outputDirectory>target/classes/META-INF/resources/assets</outputDirectory>
                 </configuration>
             </plugin>
 
