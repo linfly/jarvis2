@@ -58,7 +58,10 @@
                 <li><a href="${contextPath}/pages/plan/index.jsp">执行计划</a></li>
                 <li><a href="${contextPath}/pages/trigger/index.jsp">重跑任务</a></li>
                 <li><a href="${contextPath}/pages/operation/index.jsp">操作记录</a></li>
-                <%--<li><a href="${contextPath}/pages/manage/system.jsp">调度系统管理</a></li>--%>
+                <li><a href="${contextPath}/pages/manage/system.jsp">调度系统管理</a></li>
+                <li><a href="${contextPath}/pages/manage/app.jsp">应用管理</a></li>
+                <li><a href="${contextPath}/pages/manage/bizGroup.jsp">业务类型管理</a></li>
+                <li><a href="${contextPath}/pages/manage/worker.jsp">Worker管理</a></li>
                 <li><a href="${contextPath}/pages/department/index.jsp">部门管理</a></li>
             </ul>
     </nav>
